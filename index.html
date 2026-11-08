@@ -3,1195 +3,953 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akhileswar Reddy | DevOps Engineer</title>
+  <title>Akhileswar Reddy Madireddy · DevOps Engineer</title>
+  <meta name="description" content="DevOps Engineer with 5 years of experience building production-grade AWS EKS platforms with GitOps (ArgoCD), Argo Rollouts and Terraform." />
+  <meta property="og:title" content="Akhileswar Reddy Madireddy · DevOps Engineer" />
+  <meta property="og:description" content="AWS EKS · Kubernetes · GitOps · Terraform · Python automation. Ask my AI assistant anything about my work." />
+  <meta property="og:url" content="https://akhil.website" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#080c10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080c10'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%2300ff88' text-anchor='middle'%3EAR%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #080c10;
-      --bg2: #0d1117;
-      --bg3: #161b22;
+      --surface: #0d1117;
+      --surface-2: #161b22;
       --border: #21262d;
+      --text: #e6edf3;
+      --muted: #7d8590;
+      --faint: #6e7681;
+      --accent: #00ff88;
+      --accent-2: #58a6ff;
+      --accent-soft: rgba(0, 255, 136, 0.08);
       --green: #00ff88;
-      --green-dim: #00cc6a;
       --blue: #58a6ff;
       --orange: #f78166;
       --purple: #bc8cff;
       --yellow: #e3b341;
-      --text: #e6edf3;
-      --text-muted: #7d8590;
-      --text-dim: #484f58;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-display: 'Syne', sans-serif;
+      --good: #00ff88;
+      --warn: #e3b341;
+      --btn-bg: #00ff88;
+      --btn-fg: #080c10;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+      --radius: 16px;
+      --font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+      --maxw: 1120px;
+      color-scheme: dark;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-mono);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-
-    /* ─── NOISE OVERLAY ─── */
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    /* ─── GRID BACKGROUND ─── */
-    .grid-bg {
-      position: fixed;
-      inset: 0;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1;
       background-image:
         linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
     }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 600px) { .wrap { padding: 0 16px; } }
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 48px;
-      background: rgba(8,12,16,0.85);
-      backdrop-filter: blur(20px);
+    /* ───── NAV ───── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--green);
-      letter-spacing: -0.02em;
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.4);
+      color: #00ff88; font-family: var(--font-mono); display: grid; place-items: center; font-size: 0.8rem; letter-spacing: 0.02em;
     }
-
-    .nav-logo span { color: var(--text-muted); font-weight: 400; }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; align-items: center; gap: 4px; }
     .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-size: 0.9rem; font-weight: 500; color: var(--muted);
+      padding: 8px 12px; border-radius: 8px; transition: color .2s, background .2s;
     }
-    .nav-links a:hover { color: var(--green); }
-
-    .nav-cta {
-      background: var(--green);
-      color: var(--bg) !important;
-      padding: 8px 18px;
-      border-radius: 4px;
-      font-weight: 700 !important;
-      transition: background 0.2s, transform 0.2s !important;
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn {
+      width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text); display: grid; place-items: center; cursor: pointer;
+      transition: border-color .2s, transform .2s;
     }
-    .nav-cta:hover { background: var(--green-dim) !important; transform: translateY(-1px); }
-
-    /* ─── HERO ─── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 48px 80px;
-      z-index: 1;
+    .icon-btn:hover { border-color: var(--accent); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .menu-btn { display: none; }
+            
+    @media (max-width: 860px) {
+      .menu-btn { display: grid; }
+      .nav-links {
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--surface); border-bottom: 1px solid var(--border);
+        padding: 8px 16px 16px; display: none; box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px; }
     }
 
-    .hero-glow {
-      position: absolute;
-      top: 20%;
-      left: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-glow-2 {
-      position: absolute;
-      bottom: 10%;
-      right: -5%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(88,166,255,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      max-width: 1100px;
-      width: 100%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--green);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      border: 1px solid rgba(0,255,136,0.3);
-      padding: 6px 14px;
-      border-radius: 100px;
-      background: rgba(0,255,136,0.05);
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .hero-name .first { color: var(--text); }
-    .hero-name .last { color: var(--green); }
-
-    .hero-title {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      font-weight: 400;
-    }
-
-    .hero-title .accent { color: var(--blue); }
-
-    .hero-desc {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin-bottom: 36px;
-      font-family: var(--font-display);
-      font-weight: 400;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--green);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
+    /* ───── BUTTONS ───── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+      border: 1px solid transparent; cursor: pointer; font-family: inherit;
+      transition: transform .15s, box-shadow .2s, background .2s, border-color .2s;
+    }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--btn-bg); color: var(--btn-fg); box-shadow: 0 8px 22px color-mix(in srgb, var(--btn-bg) 28%, transparent); }
+        .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .btn-sm { padding: 8px 14px; font-size: 0.85rem; border-radius: 10px; }
+
+    /* ───── HERO ───── */
+    .hero { position: relative; padding: 88px 0 72px; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; inset: -20% -10% auto auto; width: 620px; height: 620px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%);
+      filter: blur(20px); pointer-events: none; z-index: 0;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: auto auto -30% -10%; width: 520px; height: 520px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 65%);
+      filter: blur(20px); pointer-events: none; z-index: 0;
+    }
+    .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 600; color: var(--good);
+      background: color-mix(in srgb, var(--good) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--good) 28%, transparent);
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--good); position: relative; }
+    .pulse::after {
+      content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--good);
+      animation: ping 1.8s cubic-bezier(0, 0, .2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.3rem, 5.4vw, 3.9rem); line-height: 1.05; letter-spacing: -0.03em;
+    }
+    .hero h1 .grad { color: var(--green); }
+    .hero-role { margin-top: 16px; font-size: 1.15rem; font-weight: 600; color: var(--text); }
+    .hero-role span { color: var(--muted); font-weight: 500; }
+    .hero-summary { margin-top: 16px; color: var(--muted); max-width: 580px; font-size: 1.02rem; }
+    .hero-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-links { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 18px; font-size: 0.88rem; color: var(--muted); }
+    .hero-links a { display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+    .hero-links a:hover { color: var(--accent); }
+    .hero-links svg { width: 16px; height: 16px; }
+
+    /* Pipeline card */
+    .pipeline {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: var(--shadow); overflow: hidden; font-family: var(--font-mono); font-size: 0.82rem;
+    }
+    .pipeline-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--surface-2);
+    }
+    .pipeline-head .title { font-weight: 500; color: var(--muted); }
+    .pipeline-head .tag { color: var(--good); font-size: 0.75rem; }
+    .stages { padding: 18px; display: flex; flex-direction: column; gap: 4px; }
+    .stage { display: flex; align-items: center; gap: 12px; padding: 9px 10px; border-radius: 10px; opacity: 0.35; transition: opacity .4s, background .4s; }
+    .stage.done { opacity: 1; }
+    .stage.active { opacity: 1; background: var(--accent-soft); }
+    .stage .ico {
+      width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
+      border: 2px solid var(--faint); font-size: 0.7rem;
+    }
+    .stage.done .ico { border-color: var(--good); background: var(--good); color: var(--surface); }
+    .stage.active .ico { border-color: var(--accent); border-top-color: transparent; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .stage .name { color: var(--text); flex: 1; }
+    .stage .meta { color: var(--faint); font-size: 0.74rem; }
+    .pipeline-foot { border-top: 1px solid var(--border); padding: 12px 18px; color: var(--muted); font-size: 0.76rem; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .pipeline-foot b { color: var(--good); font-weight: 500; }
+
+    .hero .wrap > *, .proj-grid > *, .contact > *, .ai > * { min-width: 0; }
+    @media (max-width: 420px) { .stage .meta { display: none; } }
+    @media (max-width: 900px) {
+      .hero { padding: 56px 0 48px; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    .btn-primary {
-      background: var(--green);
-      color: var(--bg);
+    /* ───── STATS ───── */
+    .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: -8px; }
+    .stat {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow);
     }
-    .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,255,136,0.2); }
+    .stat-num { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; color: var(--accent); line-height: 1.1; }
+    .stat-label { margin-top: 6px; font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } .stats .stat:last-child { grid-column: span 2; } }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+    /* ───── SECTIONS ───── */
+    section.block { padding: 96px 0 0; }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px;
     }
-    .btn-ghost:hover { border-color: var(--text-muted); color: var(--text); transform: translateY(-2px); }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .section-sub { margin-top: 12px; color: var(--muted); max-width: 640px; }
+    .section-head { margin-bottom: 40px; }
+    @media (max-width: 600px) { section.block { padding-top: 72px; } }
 
-    /* ─── TERMINAL CARD ─── */
-    .terminal-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      width: 320px;
-      overflow: hidden;
-      flex-shrink: 0;
-      animation: float 6s ease-in-out infinite;
+    /* ───── SKILLS ───── */
+    .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    @media (max-width: 400px) { .skills { grid-template-columns: 1fr; } }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px; transition: border-color .2s, transform .2s;
     }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+    .skill-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); transform: translateY(-2px); }
+    .skill-card h3 { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .skill-card h3 .ic {
+      width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center; flex-shrink: 0;
     }
-
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-red { background: #ff5f57; }
-    .dot-yellow { background: #febc2e; }
-    .dot-green { background: #28c840; }
-
-    .terminal-title { font-size: 0.7rem; color: var(--text-dim); margin-left: 8px; }
-
-    .terminal-body {
-      padding: 20px;
-      font-size: 0.75rem;
-      line-height: 1.9;
+    .skill-card h3 .ic svg { width: 17px; height: 17px; }
+    .skill-card { --c: var(--green); }
+    .skill-card:nth-child(1) { --c: var(--orange); }
+    .skill-card:nth-child(2), .skill-card:nth-child(7) { --c: var(--blue); }
+    .skill-card:nth-child(4), .skill-card:nth-child(8) { --c: var(--purple); }
+    .skill-card:nth-child(6) { --c: var(--yellow); }
+    .skill-card h3 .ic { background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--c); }
+    .skill-card .chip { color: var(--c); background: color-mix(in srgb, var(--c) 8%, transparent); border-color: color-mix(in srgb, var(--c) 28%, transparent); }
+    .skill-card:hover { border-color: color-mix(in srgb, var(--c) 45%, var(--border)); }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip {
+      font-size: 0.8rem; font-weight: 500; padding: 5px 10px; border-radius: 8px;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--border);
     }
 
-    .t-comment { color: var(--text-dim); }
-    .t-key { color: var(--blue); }
-    .t-val { color: var(--green); }
-    .t-str { color: var(--yellow); }
-    .t-num { color: var(--orange); }
-    .t-prompt { color: var(--green); }
-    .t-cmd { color: var(--text); }
+    /* ───── EXPERIENCE ───── */
+    .company {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .company-head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;
+      padding: 28px 28px 24px; border-bottom: 1px solid var(--border);
+    }
+    .company-head h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; }
+    .company-head .role { color: var(--muted); margin-top: 4px; }
+    .company-head .role b { color: var(--text); font-weight: 600; }
+    .date-pill {
+      font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+      background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+    }
+    .tabs { display: flex; gap: 6px; padding: 16px 28px 0; flex-wrap: wrap; }
+    .tab {
+      font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+      padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface-2); color: var(--muted); transition: all .2s;
+    }
+    .tab[aria-selected="true"] { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+        .tab small { font-weight: 500; opacity: 0.8; margin-left: 4px; }
+    .project { padding: 24px 28px 30px; }
+    .project[hidden] { display: none; }
+    .env { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; align-items: center; }
+    .env-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--faint); margin-right: 4px; }
+    .env .chip { font-family: var(--font-mono); font-size: 0.75rem; }
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 800px) { .proj-grid { grid-template-columns: 1fr; } }
+    .proj-grid h4 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 14px; font-weight: 600; }
+    .bullets li { position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--muted); font-size: 0.95rem; }
+    .bullets li::before {
+      content: ''; position: absolute; left: 4px; top: 0.62em; width: 7px; height: 7px; border-radius: 2px;
+      background: var(--faint); transform: rotate(45deg);
+    }
+    .wins li { position: relative; padding: 12px 14px 12px 44px; margin-bottom: 10px; border-radius: 12px; background: var(--surface-2); font-size: 0.93rem; color: var(--text); }
+    .wins li::before {
+      content: '✓'; position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 6px;
+      background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good);
+      display: grid; place-items: center; font-size: 0.75rem; font-weight: 700;
+    }
+    .wins strong { color: var(--accent); font-weight: 700; }
 
-    /* ─── SECTIONS ─── */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 48px;
+    /* ───── AI ASSISTANT ───── */
+    .ai {
+      position: relative; overflow: hidden; border-radius: 24px; padding: 48px;
+      background: radial-gradient(120% 140% at 100% 0%, rgba(0,255,136,0.12) 0%, #0d1117 55%, #0d1117 100%);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      color: #e6edf3; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
+    }
+    .ai::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(0,255,136,0.14) 1px, transparent 1px);
+      background-size: 22px 22px; mask-image: linear-gradient(90deg, transparent, #000 60%);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%); pointer-events: none;
+    }
+    .ai > * { position: relative; }
+    .ai .eyebrow { color: #00ff88; }
+    .ai .section-title { color: #e6edf3; }
+    .ai p { color: #7d8590; margin-top: 14px; }
+    .ai-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .ai .btn-primary { background: #00ff88; color: #080c10; box-shadow: 0 10px 28px rgba(0,255,136,0.25); }
+    .ai .btn-ghost { background: transparent; color: #e6edf3; border-color: #21262d; }
+    .ai .btn-ghost:hover { border-color: #00ff88; color: #00ff88; }
+    .chat-preview { display: flex; flex-direction: column; gap: 12px; }
+    .bubble { max-width: 88%; padding: 12px 16px; border-radius: 16px; font-size: 0.92rem; line-height: 1.5; }
+    .bubble.q { align-self: flex-end; background: rgba(88,166,255,0.14); border: 1px solid rgba(88,166,255,0.35); color: #e6edf3; border-bottom-right-radius: 4px; }
+    .bubble.a { align-self: flex-start; background: #161b22; border: 1px solid #21262d; color: #e6edf3; border-bottom-left-radius: 4px; }
+    .suggest { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .suggest button {
+      font-family: inherit; font-size: 0.8rem; cursor: pointer; color: #00ff88;
+      background: transparent; border: 1px dashed rgba(0,255,136,0.4);
+      padding: 6px 12px; border-radius: 999px; transition: background .2s;
+    }
+    .suggest button:hover { background: rgba(0,255,136,0.1); }
+    @media (max-width: 860px) { .ai { grid-template-columns: 1fr; padding: 32px 22px; } }
+
+    /* ───── CERTS & EDU ───── */
+    .certs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 860px) { .certs { grid-template-columns: 1fr; } }
+    .cert {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .cert-logo {
+      width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; color: var(--c);
+      background: color-mix(in srgb, var(--c) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+    }
+    .cert-logo.aws { --c: var(--orange); }
+    .cert-logo.tf { --c: var(--purple); }
+    .cert-logo.k8s { --c: var(--blue); }
+    .cert h3 { font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+    .cert .code { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+    .cert .note { font-size: 0.78rem; color: var(--warn); margin-top: auto; }
+
+    .edu {
+      margin-top: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .edu-left { display: flex; align-items: center; gap: 16px; }
+    .edu-ic { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
+    .edu-ic svg { width: 24px; height: 24px; }
+    .edu h3 { font-size: 1.05rem; font-weight: 600; }
+    .edu .sub { color: var(--muted); font-size: 0.9rem; }
+    .cgpa { text-align: right; }
+    .cgpa b { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); }
+    .cgpa span { color: var(--muted); font-size: 0.85rem; }
+
+    /* ───── CONTACT ───── */
+    .contact {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow);
+      padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+    @media (max-width: 860px) { .contact { grid-template-columns: 1fr; padding: 32px 22px; } }
+    .contact-list { display: flex; flex-direction: column; gap: 10px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--surface-2); transition: border-color .2s, transform .2s;
+      min-width: 0;
+    }
+    .contact-item:hover { border-color: var(--accent); transform: translateX(3px); }
+    .contact-item .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--surface); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; border: 1px solid var(--border); }
+    .contact-item .ic svg { width: 18px; height: 18px; }
+    .contact-item .lbl { font-size: 0.75rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-item .val { font-weight: 500; font-size: 0.93rem; overflow-wrap: anywhere; }
+
+    footer { padding: 56px 0 40px; text-align: center; color: var(--faint); font-size: 0.85rem; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* ───── REVEAL ───── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .pulse::after, .stage.active .ico, .chat-fab::before { animation: none !important; }
     }
 
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 48px;
+    /* ───── CHAT WIDGET ───── */
+    .chat-fab {
+      position: fixed; right: 24px; bottom: 24px; z-index: 90;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 20px 14px 16px; border-radius: 999px; border: none; cursor: pointer;
+      font-family: inherit; font-weight: 600; font-size: 0.95rem; color: #080c10;
+      background: #00ff88;
+      box-shadow: 0 12px 30px rgba(0, 255, 136, 0.3);
+      transition: transform .2s, opacity .2s;
     }
-
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--green);
+    .chat-fab::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.5); animation: halo 2.4s infinite;
     }
+    @keyframes halo { 70% { box-shadow: 0 0 0 14px rgba(0, 255, 136, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); } }
+    .chat-fab:hover { transform: translateY(-2px) scale(1.02); }
+    .chat-fab svg { width: 22px; height: 22px; }
+    .chat-fab.hidden { opacity: 0; pointer-events: none; transform: scale(0.9); }
+    @media (max-width: 600px) { .chat-fab { right: 16px; bottom: 16px; padding: 14px; } .chat-fab .fab-text { display: none; } }
 
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+    .chat-panel {
+      position: fixed; right: 24px; bottom: 24px; z-index: 100;
+      width: 420px; height: min(680px, calc(100vh - 48px)); height: min(680px, calc(100dvh - 48px));
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: var(--shadow-lg); display: flex; flex-direction: column; overflow: hidden;
+      opacity: 0; transform: translateY(16px) scale(0.98); pointer-events: none; visibility: hidden;
+      transform-origin: bottom right; transition: opacity .25s, transform .25s, visibility 0s .25s;
     }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, var(--border), transparent);
+    .chat-panel.open { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity .25s, transform .25s; }
+    .chat-panel.expanded { width: min(960px, calc(100vw - 48px)); height: calc(100vh - 48px); height: calc(100dvh - 48px); }
+    @media (max-width: 600px) {
+      .chat-panel, .chat-panel.expanded { right: 0; bottom: 0; width: 100vw; height: 100vh; height: 100dvh; border-radius: 0; border: none; }
+      .chat-expand { display: none !important; }
     }
-
-    /* ─── SKILLS ─── */
-    #skills { background: var(--bg2); width: 100%; max-width: 100%; padding: 80px 0; }
-
-    #skills .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+    .chat-head {
+      display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 18px;
+      background: #161b22; color: #e6edf3; flex-shrink: 0;
+      border-bottom: 1px solid #21262d;
     }
-
-    .skill-category {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px;
-      transition: border-color 0.2s, transform 0.2s;
+    .chat-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.4); color: #00ff88; display: grid; place-items: center; flex-shrink: 0; }
+    .chat-avatar svg { width: 20px; height: 20px; }
+    .chat-title { flex: 1; min-width: 0; }
+    .chat-title b { display: block; font-size: 0.95rem; }
+    .chat-title span { font-size: 0.76rem; color: #7d8590; display: flex; align-items: center; gap: 6px; }
+    .chat-title span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #00ff88; }
+    .chat-head button, .chat-head a {
+      width: 34px; height: 34px; border-radius: 9px; border: none; background: #21262d;
+      color: #e6edf3; display: grid; place-items: center; cursor: pointer; transition: background .2s; flex-shrink: 0;
     }
-    .skill-category:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-3px); }
-
-    .skill-cat-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      margin-bottom: 14px;
+    .chat-head button:hover, .chat-head a:hover { background: #30363d; color: #00ff88; }
+    .chat-head svg { width: 17px; height: 17px; }
+    .chat-body { position: relative; flex: 1; background: var(--bg); }
+    .chat-body iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+    .chat-loading {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; text-align: center; padding: 24px; color: var(--muted); font-size: 0.9rem; background: var(--bg);
+      transition: opacity .3s;
     }
+    .chat-loading.gone { opacity: 0; pointer-events: none; }
+    .spinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--border); border-top-color: var(--accent); animation: spin .8s linear infinite; }
+    .chat-loading small { color: var(--faint); max-width: 280px; }
+    .chat-loading a { color: var(--accent); font-weight: 600; }
+    .chat-backdrop { position: fixed; inset: 0; z-index: 95; background: rgba(8, 12, 16, 0.6); opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .chat-backdrop.show { opacity: 1; pointer-events: auto; }
 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .skill-tag {
-      font-size: 0.72rem;
-      padding: 4px 12px;
-      border-radius: 4px;
-      border: 1px solid;
-      font-weight: 600;
-    }
-
-    .tag-green { border-color: rgba(0,255,136,0.3); color: var(--green); background: rgba(0,255,136,0.06); }
-    .tag-blue { border-color: rgba(88,166,255,0.3); color: var(--blue); background: rgba(88,166,255,0.06); }
-    .tag-orange { border-color: rgba(247,129,102,0.3); color: var(--orange); background: rgba(247,129,102,0.06); }
-    .tag-purple { border-color: rgba(188,140,255,0.3); color: var(--purple); background: rgba(188,140,255,0.06); }
-    .tag-yellow { border-color: rgba(227,179,65,0.3); color: var(--yellow); background: rgba(227,179,65,0.06); }
-
-    /* ─── EXPERIENCE ─── */
-    .exp-timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-
-    .exp-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--green), var(--border) 80%, transparent);
-    }
-
-    .exp-item {
-      position: relative;
-      margin-bottom: 40px;
-    }
-
-    .exp-item::before {
-      content: '';
-      position: absolute;
-      left: -38px;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 12px rgba(0,255,136,0.5);
-    }
-
-    .exp-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 6px;
-      flex-wrap: wrap;
-    }
-
-    .exp-company {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .exp-client {
-      font-size: 0.72rem;
-      color: var(--green);
-      font-weight: 600;
-      border: 1px solid rgba(0,255,136,0.3);
-      padding: 2px 10px;
-      border-radius: 100px;
-      background: rgba(0,255,136,0.06);
-    }
-
-    .exp-date {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      margin-left: auto;
-    }
-
-    .exp-role {
-      font-size: 0.82rem;
-      color: var(--blue);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .exp-projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .exp-project {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      transition: border-color 0.2s;
-    }
-    .exp-project:hover { border-color: rgba(88,166,255,0.3); }
-
-    .exp-proj-name {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .exp-proj-role {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      margin-bottom: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .exp-env {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .env-tag {
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text-muted);
-    }
-
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .exp-bullets li {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      padding-left: 14px;
-      position: relative;
-    }
-
-    .exp-bullets li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    /* ─── ACHIEVEMENTS ─── */
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .achievement-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .achievement-card:hover { transform: translateY(-4px); border-color: rgba(0,255,136,0.3); }
-
-    .achievement-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--green), transparent);
-    }
-
-    .ach-icon {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
-    }
-
-    .ach-metric {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .ach-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* ─── CERTS ─── */
-    .certs-row {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .cert-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      transition: all 0.2s;
-      flex: 1;
-      min-width: 240px;
-    }
-    .cert-card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-
-    .cert-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .cert-icon-k8s { background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.2); }
-    .cert-icon-aws { background: rgba(247,179,65,0.1); border: 1px solid rgba(247,179,65,0.2); }
-
-    .cert-name {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .cert-body { font-size: 0.7rem; color: var(--text-dim); }
-
-    /* ─── EDUCATION ─── */
-    .edu-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 28px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .edu-degree {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .edu-school {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .edu-cgpa {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--green);
-      text-align: right;
-    }
-
-    .edu-cgpa-label {
-      font-size: 0.68rem;
-      color: var(--text-dim);
-      text-align: right;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* ─── CONTACT ─── */
-    #contact { background: var(--bg2); width: 100%; max-width: 100%; padding: 80px 0; }
-
-    #contact .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .contact-heading {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .contact-sub {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      font-family: var(--font-display);
-      font-weight: 400;
-      margin-bottom: 28px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.82rem;
-      padding: 12px 16px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: all 0.2s;
-    }
-    .contact-link:hover { border-color: var(--green); color: var(--text); transform: translateX(4px); }
-
-    .contact-link-icon { font-size: 1rem; width: 20px; }
-
-    .contact-terminal {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      text-align: center;
-      padding: 32px;
-      border-top: 1px solid var(--border);
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      position: relative;
-      z-index: 1;
-    }
-
-    footer a { color: var(--green); text-decoration: none; }
-
-    /* ─── SCROLL ANIMATIONS ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── TYPEWRITER ─── */
-    .typewriter {
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid var(--green);
-      animation: typing 2.5s steps(30, end) forwards, blink 0.8s step-end infinite;
-      width: 0;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: var(--green); }
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      #hero { padding: 100px 20px 60px; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .terminal-card { display: none; }
-      section { padding: 60px 20px; }
-      #skills .inner, #contact .inner { padding: 0 20px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; }
-    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   </style>
 </head>
 <body>
 
-<div class="grid-bg"></div>
+<!-- ───── NAV ───── -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="logo-mark">AR</span>akhil.website</a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#assistant">AI Assistant</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <div class="nav-logo">akhil<span>.devops</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certs">Certifications</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
-  </ul>
-</nav>
+<main id="top">
 
-<!-- ─── HERO ─── -->
-<section id="about" style="max-width:100%;padding:0">
-  <div id="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-glow-2"></div>
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">Available for Opportunities</div>
-        <h1 class="hero-name">
-          <span class="first">Akhileswar Reddy</span><br/>
-          <span class="last">Madireddy</span>
-        </h1>
-        <p class="hero-title">
-          <span class="accent">DevOps Engineer</span> &nbsp;·&nbsp; AWS · Kubernetes · GitOps
+  <!-- ───── HERO ───── -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="badge"><span class="pulse"></span> Open to DevOps · Platform · SRE roles</div>
+        <h1>Akhileswar Reddy<br /><span class="grad">Madireddy</span></h1>
+        <p class="hero-role">DevOps Engineer <span>· AWS EKS · GitOps · Terraform</span></p>
+        <p class="hero-summary">
+          5 years building and running production-grade AWS EKS platforms. I ship with GitOps (ArgoCD),
+          progressive delivery (Argo Rollouts) and Infrastructure as Code (Terraform) for automated,
+          zero-downtime releases, and I automate the toil away with Python.
         </p>
-        <p class="hero-desc">
-          Building production-grade AWS EKS platforms at scale. Specialised in GitOps with ArgoCD, Infrastructure as Code with Terraform, and zero-downtime delivery pipelines for enterprise workloads.
-        </p>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">4+</span>
-            <span class="stat-label">Years Exp</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">99.9%</span>
-            <span class="stat-label">Uptime SLA</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">30%</span>
-            <span class="stat-label">Cost Reduction</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">2</span>
-            <span class="stat-label">Certifications</span>
-          </div>
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-open-chat>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+            Ask my AI assistant
+          </button>
+          <a href="#experience" class="btn btn-ghost">View experience</a>
         </div>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">
-            <span>⚡</span> Get in Touch
-          </a>
-          <a href="#experience" class="btn btn-ghost">
-            <span>▶</span> View Work
-          </a>
-        </div>
-      </div>
-
-      <!-- Terminal Card -->
-      <div class="terminal-card">
-        <div class="terminal-header">
-          <div class="dot dot-red"></div>
-          <div class="dot dot-yellow"></div>
-          <div class="dot dot-green"></div>
-          <span class="terminal-title">~/akhil $ whoami</span>
-        </div>
-        <div class="terminal-body">
-          <div class="t-comment"># akhil.config.yaml</div>
-          <br/>
-          <div><span class="t-key">name:</span> <span class="t-str">"Akhileswar Reddy"</span></div>
-          <div><span class="t-key">role:</span> <span class="t-str">"DevOps Engineer"</span></div>
-          <div><span class="t-key">experience:</span> <span class="t-num">4</span><span class="t-val">+ years</span></div>
-          <div><span class="t-key">employer:</span> <span class="t-str">"TCS @ Apple"</span></div>
-          <br/>
-          <div><span class="t-key">stack:</span></div>
-          <div>&nbsp;&nbsp;<span class="t-comment">- AWS EKS</span></div>
-          <div>&nbsp;&nbsp;<span class="t-comment">- Kubernetes + Helm</span></div>
-          <div>&nbsp;&nbsp;<span class="t-comment">- ArgoCD (GitOps)</span></div>
-          <div>&nbsp;&nbsp;<span class="t-comment">- Terraform</span></div>
-          <div>&nbsp;&nbsp;<span class="t-comment">- Python / Bash</span></div>
-          <br/>
-          <div><span class="t-key">status:</span> <span class="t-val">🟢 open_to_work</span></div>
-          <br/>
-          <div><span class="t-prompt">$</span> <span class="t-cmd typewriter">kubectl get pods --all-namespaces</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SKILLS ─── -->
-<div id="skills">
-  <div class="inner">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">Technical Stack</div>
-        <h2 class="section-title">Skills & Tools</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-category reveal">
-        <div class="skill-cat-title">☁ Cloud Platform</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-orange">AWS EKS</span>
-          <span class="skill-tag tag-orange">EC2</span>
-          <span class="skill-tag tag-orange">S3</span>
-          <span class="skill-tag tag-orange">IAM</span>
-          <span class="skill-tag tag-orange">VPC</span>
-          <span class="skill-tag tag-orange">Lambda</span>
-          <span class="skill-tag tag-orange">Route53</span>
-          <span class="skill-tag tag-orange">CloudWatch</span>
-          <span class="skill-tag tag-orange">API Gateway</span>
-          <span class="skill-tag tag-orange">DynamoDB</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal" style="animation-delay:0.05s">
-        <div class="skill-cat-title">⎈ Containers & Orchestration</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-blue">Kubernetes</span>
-          <span class="skill-tag tag-blue">Docker</span>
-          <span class="skill-tag tag-blue">Helm</span>
-          <span class="skill-tag tag-blue">Kustomize</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal" style="animation-delay:0.1s">
-        <div class="skill-cat-title">🔁 CI/CD & GitOps</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-green">ArgoCD</span>
-          <span class="skill-tag tag-green">Jenkins (Rio)</span>
-          <span class="skill-tag tag-green">Git</span>
-          <span class="skill-tag tag-green">GitHub</span>
-          <span class="skill-tag tag-green">GitOps</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal" style="animation-delay:0.15s">
-        <div class="skill-cat-title">🏗 Infrastructure as Code</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-purple">Terraform</span>
-          <span class="skill-tag tag-purple">CloudFormation</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal" style="animation-delay:0.2s">
-        <div class="skill-cat-title">📊 Observability</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-yellow">Grafana</span>
-          <span class="skill-tag tag-yellow">Splunk</span>
-          <span class="skill-tag tag-yellow">PagerDuty</span>
-          <span class="skill-tag tag-yellow">CloudWatch</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal" style="animation-delay:0.25s">
-        <div class="skill-cat-title">💻 Scripting & OS</div>
-        <div class="skill-tags">
-          <span class="skill-tag tag-green">Python</span>
-          <span class="skill-tag tag-green">Bash</span>
-          <span class="skill-tag tag-blue">Linux</span>
-          <span class="skill-tag tag-blue">Nginx</span>
-          <span class="skill-tag tag-blue">SSL/TLS</span>
-          <span class="skill-tag tag-blue">DNS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── EXPERIENCE ─── -->
-<section id="experience">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-label">Work History</div>
-      <h2 class="section-title">Experience</h2>
-    </div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="exp-timeline">
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <span class="exp-company">Tata Consultancy Services</span>
-        <span class="exp-client">Client: Apple</span>
-        <span class="exp-date">Dec 2021 – Present</span>
-      </div>
-      <div class="exp-role">DevOps Engineer → SRE</div>
-
-      <div class="exp-projects">
-        <!-- Project 1 -->
-        <div class="exp-project">
-          <div class="exp-proj-name">EBS Platform</div>
-          <div class="exp-proj-role">DevOps Engineer</div>
-          <div class="exp-env">
-            <span class="env-tag">AWS</span>
-            <span class="env-tag">Kubernetes</span>
-            <span class="env-tag">Helm</span>
-            <span class="env-tag">ArgoCD</span>
-            <span class="env-tag">Python</span>
-            <span class="env-tag">Terraform</span>
-            <span class="env-tag">Rio (Jenkins)</span>
-          </div>
-          <ul class="exp-bullets">
-            <li>Managed application deployments to AWS EKS using Helm charts and ArgoCD GitOps workflows</li>
-            <li>Configured and maintained CI pipelines using RIO (Jenkins) for continuous integration</li>
-            <li>Developed Python automation scripts to manage GitHub repositories and configurations</li>
-            <li>Standardized pull request templates across multiple repositories to improve review consistency</li>
-            <li>Administered GitHub repositories including branch strategies and webhook integrations</li>
-          </ul>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="exp-project">
-          <div class="exp-proj-name">MSI Platform</div>
-          <div class="exp-proj-role">Site Reliability Engineer</div>
-          <div class="exp-env">
-            <span class="env-tag">AWS</span>
-            <span class="env-tag">Linux</span>
-            <span class="env-tag">PagerDuty</span>
-            <span class="env-tag">Splunk</span>
-            <span class="env-tag">Grafana</span>
-          </div>
-          <ul class="exp-bullets">
-            <li>Handled production incidents and on-call support with rapid response SLAs</li>
-            <li>Performed root cause analysis and service restoration for high-severity incidents</li>
-            <li>Monitored system health and configured proactive alerting across services</li>
-            <li>Created dashboards and alerts for faster anomaly detection</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Key Achievements -->
-  <div style="margin-top: 48px;">
-    <div class="section-label" style="margin-bottom:24px;">🏆 Key Achievements</div>
-    <div class="achievements-grid">
-      <div class="achievement-card reveal">
-        <div class="ach-icon">⚡</div>
-        <div class="ach-metric">0 Manual</div>
-        <div class="ach-desc">Implemented GitOps deployment via ArgoCD, fully eliminating manual release processes</div>
-      </div>
-      <div class="achievement-card reveal" style="animation-delay:0.1s">
-        <div class="ach-icon">🤖</div>
-        <div class="ach-metric">100% Auto</div>
-        <div class="ach-desc">Automated GitHub repository, branch, and webhook creation using Python, eliminating all manual configuration</div>
-      </div>
-      <div class="achievement-card reveal" style="animation-delay:0.15s">
-        <div class="ach-icon">💰</div>
-        <div class="ach-metric">30% Cost↓</div>
-        <div class="ach-desc">Designed cloud-native architecture using API Gateway, Lambda &amp; DynamoDB, reducing infra costs by 30%</div>
-      </div>
-      <div class="achievement-card reveal" style="animation-delay:0.2s">
-        <div class="ach-icon">📈</div>
-        <div class="ach-metric">50% Scale↑</div>
-        <div class="ach-desc">Improved system scalability by 50% through optimised AWS service architecture and auto-scaling strategies</div>
-      </div>
-      <div class="achievement-card reveal" style="animation-delay:0.25s">
-        <div class="ach-icon">🟢</div>
-        <div class="ach-metric">99.9% SLA</div>
-        <div class="ach-desc">Improved service uptime to 99.9% through proactive monitoring and automated incident response</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CERTIFICATIONS ─── -->
-<section id="certs">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-label">Verified Credentials</div>
-      <h2 class="section-title">Certifications</h2>
-    </div>
-    <div class="section-line"></div>
-  </div>
-  <div class="certs-row">
-    <div class="cert-card reveal">
-      <div class="cert-icon cert-icon-k8s">⎈</div>
-      <div>
-        <div class="cert-name">Certified Kubernetes Administrator</div>
-        <div class="cert-body">CKA · CNCF / Linux Foundation</div>
-      </div>
-    </div>
-    <div class="cert-card reveal" style="animation-delay:0.1s">
-      <div class="cert-icon cert-icon-aws">☁</div>
-      <div>
-        <div class="cert-name">AWS Certified Developer – Associate</div>
-        <div class="cert-body">DVA-C02 · Amazon Web Services</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── EDUCATION ─── -->
-<section id="education">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-label">Academic Background</div>
-      <h2 class="section-title">Education</h2>
-    </div>
-    <div class="section-line"></div>
-  </div>
-  <div class="edu-card reveal">
-    <div>
-      <div class="edu-degree">B.E. Mechanical Engineering</div>
-      <div class="edu-school">SCSVMV University &nbsp;·&nbsp; 2020</div>
-    </div>
-    <div>
-      <div class="edu-cgpa">8.96<span style="font-size:1rem; color: var(--text-muted)">/10</span></div>
-      <div class="edu-cgpa-label">CGPA</div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACT ─── -->
-<div id="contact">
-  <div class="inner">
-    <div class="contact-grid">
-      <div class="reveal">
-        <h2 class="contact-heading">Let's build something<br/><span style="color:var(--green)">production-ready.</span></h2>
-        <p class="contact-sub">Open to senior DevOps, Platform Engineering, and SRE roles. I bring hands-on AWS EKS, GitOps, and infrastructure automation experience from large-scale enterprise environments.</p>
-        <div class="contact-links">
-          <a href="mailto:m.akhileswarreddy@gmail.com" class="contact-link">
-            <span class="contact-link-icon">✉</span>
+        <div class="hero-links">
+          <a href="mailto:m.akhileswarreddy@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             m.akhileswarreddy@gmail.com
           </a>
-          <a href="tel:+918919233893" class="contact-link">
-            <span class="contact-link-icon">📞</span>
+          <a href="https://www.linkedin.com/in/akhileswar-reddy-madireddy-8084b0203" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a href="tel:+918919233893">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
             +91 89192 33893
-          </a>
-          <a href="https://linkedin.com/in/akhileswar-reddy-madireddy-8084b0203" target="_blank" class="contact-link">
-            <span class="contact-link-icon">🔗</span>
-            linkedin.com/in/akhileswar-reddy-madireddy
-          </a>
-          <a href="https://akhil.website" target="_blank" class="contact-link">
-            <span class="contact-link-icon">🌐</span>
-            akhil.website
           </a>
         </div>
       </div>
 
-      <div class="contact-terminal reveal" style="animation-delay:0.15s">
-        <div class="terminal-header">
-          <div class="dot dot-red"></div>
-          <div class="dot dot-yellow"></div>
-          <div class="dot dot-green"></div>
-          <span class="terminal-title">contact.sh</span>
+      <!-- Animated GitOps pipeline card -->
+      <div class="pipeline" aria-label="Example GitOps release pipeline">
+        <div class="pipeline-head">
+          <span class="title">release · ebs-platform</span>
+          <span class="tag" id="pipeStatus">● syncing</span>
         </div>
-        <div class="terminal-body" style="font-size:0.78rem; line-height:1.95">
-          <div><span class="t-prompt">$</span> <span class="t-cmd">cat reasons_to_hire.txt</span></div>
-          <br/>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">4+ years AWS EKS production experience</span></div>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">Apple-scale infrastructure background</span></div>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">GitOps & zero-downtime deployments</span></div>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">CKA + AWS Certified</span></div>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">Automation-first mindset</span></div>
-          <div><span class="t-val">✓</span> <span style="color:var(--text-muted)">Proven cost & scalability wins</span></div>
-          <br/>
-          <div><span class="t-prompt">$</span> <span class="t-cmd">echo $STATUS</span></div>
-          <div><span class="t-val">🟢 OPEN_TO_WORK</span></div>
-          <br/>
-          <div><span class="t-prompt">$</span> <span class="t-cmd">curl -X POST /api/hire-akhil</span></div>
-          <div><span class="t-key">{"status":</span> <span class="t-str">"200 OK"</span><span class="t-key">,</span></div>
-          <div>&nbsp;&nbsp;<span class="t-key">"message":</span> <span class="t-str">"Great choice 🚀"</span><span class="t-key">}</span></div>
+        <div class="stages" id="stages">
+          <div class="stage"><span class="ico"></span><span class="name">git push → main</span><span class="meta">GitHub</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">build &amp; test</span><span class="meta">Rio (GH Actions)</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">docker build (multi-stage)</span><span class="meta">−40% size</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">terraform plan / apply</span><span class="meta">IaC</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">argocd sync</span><span class="meta">GitOps</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">canary 10% → 50% → 100%</span><span class="meta">Argo Rollouts</span></div>
+          <div class="stage"><span class="ico"></span><span class="name">healthy on EKS</span><span class="meta">0 downtime</span></div>
+        </div>
+        <div class="pipeline-foot">
+          <span>cluster: <b>eks-prod</b></span>
+          <span>manual steps: <b>0</b></span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ───── STATS ───── -->
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="stat-num">5 yrs</div><div class="stat-label">DevOps &amp; SRE on AWS</div></div>
+      <div class="stat reveal"><div class="stat-num">99.9%</div><div class="stat-label">Service uptime achieved</div></div>
+      <div class="stat reveal"><div class="stat-num">~40%</div><div class="stat-label">Smaller Docker images</div></div>
+      <div class="stat reveal"><div class="stat-num">50%</div><div class="stat-label">Faster CI/CD pipelines</div></div>
+      <div class="stat reveal"><div class="stat-num">30%</div><div class="stat-label">Lower infrastructure cost</div></div>
+    </div>
+  </div>
+
+  <!-- ───── SKILLS ───── -->
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Technical skills</div>
+        <h2 class="section-title">The stack I work in every day</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 1 1 0 9z"/></svg></span>Cloud Platform · AWS</h3>
+          <div class="chips">
+            <span class="chip">EKS</span><span class="chip">EC2</span><span class="chip">S3</span><span class="chip">IAM</span><span class="chip">VPC</span><span class="chip">ELB</span><span class="chip">Auto Scaling</span><span class="chip">CloudWatch</span><span class="chip">Lambda</span><span class="chip">Route53</span><span class="chip">CloudFront</span><span class="chip">SQS</span><span class="chip">SNS</span><span class="chip">RDS</span><span class="chip">DynamoDB</span><span class="chip">API Gateway</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>Containers &amp; Orchestration</h3>
+          <div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Helm</span><span class="chip">Kustomize</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a6 6 0 0 0 6 6h3"/></svg></span>CI/CD &amp; Version Control</h3>
+          <div class="chips"><span class="chip">GitHub Actions (Rio)</span><span class="chip">ArgoCD</span><span class="chip">Argo Rollouts</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span>Infrastructure as Code</h3>
+          <div class="chips"><span class="chip">Terraform</span><span class="chip">CloudFormation</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>Scripting &amp; Programming</h3>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Bash</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>Observability &amp; Incidents</h3>
+          <div class="chips"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">PagerDuty</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>OS &amp; Networking</h3>
+          <div class="chips"><span class="chip">Linux</span><span class="chip">Nginx</span><span class="chip">DNS</span><span class="chip">Load Balancing</span><span class="chip">SSL/TLS</span><span class="chip">TCP/IP</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>DevOps Practices</h3>
+          <div class="chips"><span class="chip">GitOps</span><span class="chip">Blue-Green Deployment</span><span class="chip">Canary Deployment</span><span class="chip">Infrastructure Automation</span><span class="chip">Troubleshooting &amp; Production Support</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── EXPERIENCE ───── -->
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Professional experience</div>
+        <h2 class="section-title">Where I've been shipping</h2>
+      </div>
+
+      <article class="company reveal">
+        <div class="company-head">
+          <div>
+            <h3>Tata Consultancy Services</h3>
+            <p class="role"><b>DevOps Engineer</b> · Client: Apple</p>
+          </div>
+          <span class="date-pill">Dec 2021 – Present</span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Projects">
+          <button class="tab" role="tab" id="tab-ebs" aria-controls="proj-ebs" aria-selected="true">EBS Platform <small>DevOps</small></button>
+          <button class="tab" role="tab" id="tab-msi" aria-controls="proj-msi" aria-selected="false" tabindex="-1">MSI Platform <small>SRE</small></button>
+        </div>
+
+        <div class="project" id="proj-ebs" role="tabpanel" aria-labelledby="tab-ebs">
+          <div class="env">
+            <span class="env-label">env:</span>
+            <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Helm</span><span class="chip">ArgoCD</span><span class="chip">Python</span><span class="chip">Rio (GitHub Actions)</span><span class="chip">Terraform</span>
+          </div>
+          <div class="proj-grid">
+            <div>
+              <h4>Responsibilities</h4>
+              <ul class="bullets">
+                <li>Managed application deployments to AWS EKS using Helm charts and ArgoCD GitOps workflows</li>
+                <li>Configured and maintained CI pipelines using Rio for continuous integration</li>
+                <li>Developed Python automation scripts to manage GitHub repositories and configurations</li>
+                <li>Administered GitHub repositories including branch strategies and webhook integrations</li>
+                <li>Standardized pull request templates across multiple repositories to improve review process consistency</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Key achievements</h4>
+              <ul class="wins">
+                <li>Implemented GitOps deployment using ArgoCD, <strong>eliminating manual releases</strong></li>
+                <li>Automated GitHub repository, branch and webhook creation using Python, <strong>eliminating manual configuration effort</strong></li>
+                <li>Optimized Docker images with multi-stage builds and efficient layer caching, <strong>reducing image size by ~40%</strong> and <strong>improving CI/CD pipeline performance by 50%</strong></li>
+                <li>Designed cloud-native architectures on API Gateway, Lambda and DynamoDB, achieving <strong>30% lower infrastructure cost</strong> and <strong>50% better scalability</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="project" id="proj-msi" role="tabpanel" aria-labelledby="tab-msi" hidden>
+          <div class="env">
+            <span class="env-label">env:</span>
+            <span class="chip">AWS</span><span class="chip">Linux</span><span class="chip">PagerDuty</span><span class="chip">Splunk</span><span class="chip">Grafana</span>
+          </div>
+          <div class="proj-grid">
+            <div>
+              <h4>Responsibilities</h4>
+              <ul class="bullets">
+                <li>Handled production incidents and on-call support</li>
+                <li>Performed root cause analysis and service restoration</li>
+                <li>Monitored system health and alerts</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Key achievements</h4>
+              <ul class="wins">
+                <li>Improved service uptime to <strong>99.9%</strong> through proactive monitoring</li>
+                <li><strong>Reduced recurring incidents</strong> through automation and fixes</li>
+                <li>Created dashboards and alerts for <strong>faster detection of issues</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───── AI ASSISTANT ───── -->
+  <section class="block" id="assistant">
+    <div class="wrap">
+      <div class="ai reveal">
+        <div>
+          <div class="eyebrow">AI assistant</div>
+          <h2 class="section-title">Skip the résumé. Just ask.</h2>
+          <p>
+            I built a personal AI assistant that knows my experience, projects and skills. Ask it anything
+            a recruiter or hiring manager would: how I set up GitOps, what I did on EKS, or whether I'm a fit
+            for your role. It's available any time, right here on this page.
+          </p>
+          <div class="ai-actions">
+            <button class="btn btn-primary" data-open-chat>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Start chatting
+            </button>
+            <a class="btn btn-ghost" href="https://chat.akhil.website" target="_blank" rel="noopener">
+              Open chat.akhil.website
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="chat-preview" aria-hidden="true">
+          <div class="bubble q">How did Akhil remove manual releases?</div>
+          <div class="bubble a">He moved EBS Platform deployments to a GitOps model with ArgoCD and Helm on AWS EKS, so every release is a Git commit, synced automatically with no manual steps.</div>
+          <div class="bubble q">Is he Kubernetes certified?</div>
+          <div class="bubble a">Yes. He holds the CKA, along with AWS Developer – Associate and HashiCorp Terraform Associate.</div>
+          <div class="suggest">
+            <button type="button" data-open-chat tabindex="-1">What's his EKS experience?</button>
+            <button type="button" data-open-chat tabindex="-1">Tell me about the cost savings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── CERTIFICATIONS & EDUCATION ───── -->
+  <section class="block" id="certifications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Certifications &amp; education</div>
+        <h2 class="section-title">Verified credentials</h2>
+      </div>
+      <div class="certs">
+        <div class="cert reveal">
+          <div class="cert-logo aws">AWS</div>
+          <div>
+            <h3>AWS Certified Developer – Associate</h3>
+            <div class="code">DVA-C02 · Amazon Web Services</div>
+          </div>
+        </div>
+        <div class="cert reveal">
+          <div class="cert-logo tf">TF</div>
+          <div>
+            <h3>HashiCorp Terraform Associate</h3>
+            <div class="code">HCTA0-004 · HashiCorp</div>
+          </div>
+        </div>
+        <div class="cert reveal">
+          <div class="cert-logo k8s">CKA</div>
+          <div>
+            <h3>Certified Kubernetes Administrator</h3>
+            <div class="code">CKA · CNCF / Linux Foundation</div>
+          </div>
+          <div class="note">Exp. Sep 2026</div>
+        </div>
+      </div>
+      <div class="edu reveal">
+        <div class="edu-left">
+          <div class="edu-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <div>
+            <h3>B.E. Mechanical Engineering</h3>
+            <div class="sub">SCSVMV University · 2020</div>
+          </div>
+        </div>
+        <div class="cgpa"><b>8.96</b><span> / 10 CGPA</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── CONTACT ───── -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 class="section-title">Let's build reliable platforms together.</h2>
+          <p class="section-sub">
+            Open to DevOps, Platform Engineering and SRE roles. I bring hands-on AWS EKS, GitOps and
+            infrastructure automation experience from large-scale enterprise environments.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="mailto:m.akhileswarreddy@gmail.com">Email me</a>
+            <button class="btn btn-ghost" data-open-chat>Ask the AI assistant</button>
+          </div>
+        </div>
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:m.akhileswarreddy@gmail.com">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <span><span class="lbl">Email</span><br /><span class="val">m.akhileswarreddy@gmail.com</span></span>
+          </a>
+          <a class="contact-item" href="tel:+918919233893">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <span><span class="lbl">Phone</span><br /><span class="val">+91 89192 33893</span></span>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/akhileswar-reddy-madireddy-8084b0203" target="_blank" rel="noopener">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>
+            <span><span class="lbl">LinkedIn</span><br /><span class="val">akhileswar-reddy-madireddy</span></span>
+          </a>
+          <a class="contact-item" href="https://chat.akhil.website" target="_blank" rel="noopener">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span><span class="lbl">AI Chatbot</span><br /><span class="val">chat.akhil.website</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    © <span id="year">2026</span> Akhileswar Reddy Madireddy · DevOps Engineer · India ·
+    <a href="https://chat.akhil.website" target="_blank" rel="noopener">AI assistant</a>
+  </div>
+</footer>
+
+<!-- ───── CHAT WIDGET ───── -->
+<button class="chat-fab" id="chatFab" data-open-chat aria-label="Chat with Akhil's AI assistant" aria-controls="chatPanel" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+  <span class="fab-text">Ask my AI</span>
+</button>
+<div class="chat-backdrop" id="chatBackdrop"></div>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle">
+  <div class="chat-head">
+    <div class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M8 14h.01M16 14h.01M9 18h6"/></svg></div>
+    <div class="chat-title"><b id="chatTitle">Akhil's AI Assistant</b><span>Ask about experience, skills &amp; projects</span></div>
+    <button class="chat-expand" id="chatExpand" aria-label="Expand chat window" title="Expand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    </button>
+    <a href="https://chat.akhil.website" target="_blank" rel="noopener" aria-label="Open chat in a new tab" title="Open in new tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+    </a>
+    <button id="chatClose" aria-label="Close chat" title="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-loading" id="chatLoading">
+      <div class="spinner"></div>
+      <div>Waking up the assistant…</div>
+      <small>The first load can take a few seconds. If it doesn't appear, <a href="https://chat.akhil.website" target="_blank" rel="noopener">open it in a new tab</a>.</small>
     </div>
   </div>
 </div>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <p>Designed & built by <a href="https://akhil.website">Akhileswar Reddy Madireddy</a> · DevOps Engineer · India</p>
-</footer>
-
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  (function () {
+    var CHAT_URL = 'https://chat.akhil.website';
+    var root = document.documentElement;
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* Mobile menu */
+    var menuBtn = document.getElementById('menuBtn');
+    var navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+    navLinks.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+    });
+
+    /* Project tabs */
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectTab(tab); });
+      tab.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+          selectTab(next); next.focus();
+        }
+      });
+    });
+    function selectTab(tab) {
+      tabs.forEach(function (t) {
+        var sel = t === tab;
+        t.setAttribute('aria-selected', sel);
+        t.tabIndex = sel ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !sel;
+      });
+    }
+
+    /* Scroll reveal */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    /* Animated pipeline */
+    var stages = document.querySelectorAll('#stages .stage');
+    var status = document.getElementById('pipeStatus');
+    var step = 0;
+    function tick() {
+      stages.forEach(function (s, i) {
+        s.classList.toggle('done', i < step);
+        s.classList.toggle('active', i === step);
+        s.querySelector('.ico').textContent = i < step ? '✓' : '';
+      });
+      if (step >= stages.length) {
+        status.textContent = '● synced · healthy';
+        setTimeout(function () { step = 0; status.textContent = '● syncing'; tick(); }, 3200);
+        return;
+      }
+      step++;
+      setTimeout(tick, 900);
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      step = stages.length; tick();
+    } else { tick(); }
+
+    /* Chat widget: iframe is created on first open so the page itself stays fast */
+    var panel = document.getElementById('chatPanel');
+    var fab = document.getElementById('chatFab');
+    var backdrop = document.getElementById('chatBackdrop');
+    var body = document.getElementById('chatBody');
+    var loading = document.getElementById('chatLoading');
+    var expandBtn = document.getElementById('chatExpand');
+    var loaded = false;
+
+    function openChat() {
+      if (!loaded) {
+        var frame = document.createElement('iframe');
+        frame.src = CHAT_URL;
+        frame.title = "Akhil's AI Assistant";
+        frame.allow = 'clipboard-write';
+        frame.addEventListener('load', function () { loading.classList.add('gone'); });
+        body.appendChild(frame);
+        loaded = true;
+      }
+      panel.classList.add('open');
+      fab.classList.add('hidden');
+      fab.setAttribute('aria-expanded', 'true');
+      if (panel.classList.contains('expanded') || window.innerWidth <= 600) backdrop.classList.add('show');
+      document.getElementById('chatClose').focus();
+    }
+    function closeChat() {
+      panel.classList.remove('open');
+      backdrop.classList.remove('show');
+      fab.classList.remove('hidden');
+      fab.setAttribute('aria-expanded', 'false');
+      fab.focus();
+    }
+    document.querySelectorAll('[data-open-chat]').forEach(function (el) {
+      el.addEventListener('click', openChat);
+    });
+    document.getElementById('chatClose').addEventListener('click', closeChat);
+    backdrop.addEventListener('click', closeChat);
+    expandBtn.addEventListener('click', function () {
+      var on = panel.classList.toggle('expanded');
+      backdrop.classList.toggle('show', on);
+      expandBtn.setAttribute('aria-label', on ? 'Shrink chat window' : 'Expand chat window');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && panel.classList.contains('open')) closeChat();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
 </script>
 </body>
 </html>
